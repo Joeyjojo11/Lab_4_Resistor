@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Lab_4_Resistors</string>
+    <string name="Rd">2</string>
+    <string name="Brn">1</string>
+    <string name="Blk">0</string>
+    <string name="Ylw">4</string>
+    <string name="Grn">5</string>
+    <string name="Blu">6</string>
+    <string name="Vio">7</string>
+    <string name="Gry">8</string>
+    <string name="Wht">9</string>
+    <string name="Orn">3</string>
+    <string-array name="Resistor_array">
+        <item></item>
+        <item>Black</item>
+        <item>Brown</item>
+        <item>Red</item>
+        <item>Orange</item>
+        <item>Yellow</item>
+        <item>Green</item>
+        <item>Blue</item>
+        <item>Violet</item>
+        <item>Grey</item>
+        <item>White</item>
+    </string-array>
+</resources>
