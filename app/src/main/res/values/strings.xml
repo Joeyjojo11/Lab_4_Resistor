@@ -10,6 +10,14 @@
     <string name="Gry">8</string>
     <string name="Wht">9</string>
     <string name="Orn">3</string>
+    <string name="band_1">Band 1</string>
+    <string name="resistor">Resistor</string>
+    <string name="value">value</string>
+    <string name="resistor_calculation_app">Resistor Calculation App</string>
+    <string name="resistor2">Resistor2</string>
+    <string name="range">Range:</string>
+    <string name="resistance">Resistance</string>
+    <string name="please_select_the_resistor_colours_from_the_drop_down">please select the resistor colours from the drop down</string>
     <string-array name="Resistor_array">
         <item></item>
         <item>Black</item>
@@ -22,5 +30,12 @@
         <item>Violet</item>
         <item>Grey</item>
         <item>White</item>
+    </string-array>
+    <string-array name="tolerance_array">
+        <item></item>
+        <item>Brown</item>
+        <item>Red</item>
+        <item>Gold</item>
+        <item>Silver</item>
     </string-array>
 </resources>
