@@ -17,6 +17,7 @@ import android.widget.Toast;
 import org.w3c.dom.Text;
 
 import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
@@ -26,17 +27,15 @@ public class MainActivity extends AppCompatActivity {
     String temp_Resistance;     // Used to pull the 3 band strings together
     String Display_Resistance;  // The final displayed Resistance Value
     String Display_Range;       // The final displayed Range Values
-    String Lower_String;
-    String Upper_String;
     String band_1 = "0";        // Used to get the First Band Value
     String band_2 = "0";        // Used to get the Second Band Value
     String band_3 = "";         // Used to get the Third Band Value
 
     //int ValuePastOut = 0;
-    float Resistance_Value=0;
-    float temp_Resistance2 = 0; // Used for doing Calculations
-    float Resistance_Lower_Limit=0;
-    float Resistance_Upper_Limit=0;
+    double Resistance_Value=0;
+    double temp_Resistance2 = 0; // Used for doing Calculations
+    double Resistance_Lower_Limit=0;
+    double Resistance_Upper_Limit=0;
     float Tolerance=0;
 
     private Spinner spinner1;
@@ -459,21 +458,24 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void Updated() { // This called everytime a Spinner is changed to update the Displayed Values
+    public void Updated() { // This is called everytime a Spinner is changed to update the Displayed Values
 
-        DecimalFormat df = new DecimalFormat("#.##");
+
         //Join the strings associated with Bands 1,2 and 3
         temp_Resistance = band_1.concat(band_2).concat(band_3);
-        //Convert it to an Integer (Float) to perform the Claculations
-        temp_Resistance2 = Integer.parseInt(temp_Resistance);
+        //Convert it to a Double to perform the Claculations
+        temp_Resistance2 = Double.parseDouble(temp_Resistance);
         //Move around the decimal point so the Resistance can be displayed in KΩ or MΩ
         if (temp_Resistance2 >= 1000 && temp_Resistance2 <= 999999){
 
             Resistance_Value = temp_Resistance2/1000;
             Calc();
-            Display_Resistance = (Float.toString(Resistance_Value).concat(" KΩ"));
-            Display_Range = (Float.toString(Resistance_Lower_Limit).concat(" ~ ")
-                    .concat(Float.toString(Resistance_Upper_Limit)).concat(" KΩ"));
+            Display_Resistance = (String.valueOf(Resistance_Value).concat(" KΩ"));
+            Display_Range = (String.valueOf(Resistance_Lower_Limit).concat(" ~ ")
+                    .concat(String.valueOf(Resistance_Upper_Limit)).concat(" KΩ"));
+
+
+
 
         }
 
@@ -481,42 +483,47 @@ public class MainActivity extends AppCompatActivity {
 
             Resistance_Value = temp_Resistance2/1000000;
             Calc();
-            Display_Resistance = (Float.toString(Resistance_Value).concat(" MΩ"));
-            Display_Range = (Float.toString(Resistance_Lower_Limit).concat(" ~ ")
-                    .concat(Float.toString(Resistance_Upper_Limit)).concat(" MΩ"));
-
+            Display_Resistance = (String.valueOf(Resistance_Value).concat(" MΩ"));
+            Display_Range = (String.valueOf(Resistance_Lower_Limit).concat(" ~ ")
+                    .concat(String.valueOf(Resistance_Upper_Limit)).concat(" MΩ"));
         }
 
         else {
             Resistance_Value = temp_Resistance2;
             Calc();
-            Display_Resistance = (Float.toString(Resistance_Value).concat(" Ω"));
-            Display_Range = (Float.toString(Resistance_Lower_Limit).concat(" ~ ")
-                    .concat(Float.toString(Resistance_Upper_Limit)).concat(" Ω"));
+            Display_Resistance = (String.valueOf(Resistance_Value).concat(" Ω"));
+            Display_Range = (String.valueOf(Resistance_Lower_Limit).concat(" ~ ")
+                    .concat(String.valueOf(Resistance_Upper_Limit)).concat(" Ω"));
         }
 
-
+        //Display the Resistor Resistance
         TextView tv = (TextView) findViewById(R.id.textView8);
-        //tv.setText(Float.toString(Resistance_Value));
         tv.setText(Display_Resistance);
+
+        //Display the Upper and Lower Limits
         TextView tv1 = (TextView) findViewById(R.id.textView10);
         tv1.setText(Display_Range);
-        //DecimalFormat df2 = new DecimalFormat("#.00");
-        //( String.format( "Value of a: %.2f", a ) );
-
-        //tv1.setText(Float.toString(Resistance_Upper_Limit));
-        //TextView tv2 = (TextView) findViewById(R.id.textView10);
-        //tv2.setText(Float.toString(Resistance_Lower_Limit));
-
 
     }
 
     public void Calc() {
         //String.format(Locale.CANADA, "%.2f", Resistance_Lower_Limit);
 
+        //NumberFormat nf = new DecimalFormat("##");
+        Resistance_Lower_Limit = ( Resistance_Value - ((Resistance_Value/100)*Tolerance));
+        //convert the Lower Limit to a String limiting it to 2 Decamil places
+        String str = String.format("%1.2f", Resistance_Lower_Limit);
+        //convert it Back to a Double
+        Resistance_Lower_Limit = Double.valueOf(str);
 
-        Resistance_Lower_Limit = Resistance_Value - ((Resistance_Value/100)*Tolerance);
-        Resistance_Upper_Limit = Resistance_Value + ((Resistance_Value/100)*Tolerance);
+        Resistance_Upper_Limit = (Resistance_Value + ((Resistance_Value/100)*Tolerance));
+        //convert the Upper Limit to a String limiting it to 2 Decamil places
+        String str1 = String.format("%1.2f", Resistance_Upper_Limit );
+        //convert it Back to a Double
+        Resistance_Upper_Limit = Double.valueOf(str1);
+
+
+
 
     }
 
