@@ -18,6 +18,11 @@
     <string name="range">Range:</string>
     <string name="resistance">Resistance</string>
     <string name="please_select_the_resistor_colours_from_the_drop_down">please select the resistor colours from the drop down</string>
+    <string name="lab_4_j_dolan">Lab 4. J Dolan</string>
+    <string name="tolerance">Tolerance:</string>
+    <string name="Range">Range:</string>
+    <string name="Resistance">Resistance:</string>
+    <string name="please_select_the_resistor_colours_from_the_dropdowns">please select the resistor colours from the dropdowns</string>
     <string-array name="Resistor_array">
         <item></item>
         <item>Black</item>

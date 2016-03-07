@@ -1,5 +1,13 @@
 package com.example.jdolan.lab_4_resistors;
 
+import android.support.v7.app.AppCompatActivity;
+
+/* TODO General tidy up
+    *Consolidate the Spinner Colour is Selected into 1 function and pass in the Band number and return the Values
+    * Check its compatability with other phones
+ */
+
+
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -503,6 +511,10 @@ public class MainActivity extends AppCompatActivity {
         //Display the Upper and Lower Limits
         TextView tv1 = (TextView) findViewById(R.id.textView10);
         tv1.setText(Display_Range);
+
+
+        TextView tv2 = (TextView) findViewById(R.id.textView17);
+        tv2.setText(String.valueOf(Tolerance).concat("%"));
 
     }
 
